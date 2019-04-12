@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_deep_link/second_page.dart';
 import 'package:uni_links/uni_links.dart' as UniLink;
 import 'package:flutter/services.dart' show PlatformException;
 
- main() async {
-  await checkDeepLink();
-//  runApp(MyApp());
+ main()  {checkDeepLink();
+  runApp(MyApp());
 }
 
 Future checkDeepLink() async {
@@ -48,12 +48,15 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.uri}) : super(key: key);
   final Uri uri;
 
+
   @override
   Widget build(BuildContext context) {
 
-//    if(uri != null){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => SecondPage(uri)));
-//    }
+    SchedulerBinding.instance.addPostFrameCallback((_){
+      if(uri != null){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => SecondPage(uri)));
+      }
+    });
 
     return Scaffold(
       appBar: AppBar(
