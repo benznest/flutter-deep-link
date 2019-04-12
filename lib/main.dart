@@ -5,8 +5,9 @@ import 'package:flutter_deep_link/second_page.dart';
 import 'package:uni_links/uni_links.dart' as UniLink;
 import 'package:flutter/services.dart' show PlatformException;
 
- main()  {checkDeepLink();
-  runApp(MyApp());
+ main()  {
+   checkDeepLink();
+   runApp(MyApp());
 }
 
 Future checkDeepLink() async {
